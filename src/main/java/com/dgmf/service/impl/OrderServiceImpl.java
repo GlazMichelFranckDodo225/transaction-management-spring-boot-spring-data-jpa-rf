@@ -13,6 +13,7 @@ import com.dgmf.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -25,6 +26,8 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
+    // @Transactional(rollbackFor = PaymentException.class)
+    @Transactional(rollbackFor = PaymentException.class)
     public OrderApiDtoResponse placeOrder(
             OrderApiDtoRequest orderApiDtoRequest
     ) {
